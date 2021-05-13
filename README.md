@@ -83,6 +83,9 @@ EXEC sys.sp_db_vardecimal_storage_format N'BlogManagement', N'ON'
 GO
 ALTER DATABASE [BlogManagement] SET QUERY_STORE = OFF
 GO
+
+
+// Table Creation Start
 USE [BlogManagement]
 GO
 /****** Object:  Table [dbo].[Author]    Script Date: 5/13/2021 6:14:30 PM ******/
