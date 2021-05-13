@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlogWebSite.Models;
 using BlogWebSite.Repos;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogWebSite.Controllers
@@ -19,6 +21,7 @@ namespace BlogWebSite.Controllers
 
         }
 
+       
         [HttpGet]
         [Route("GetAllBlog")]
         public async Task<IActionResult> GetAllBlog()
@@ -34,7 +37,7 @@ namespace BlogWebSite.Controllers
                 throw new ApplicationException("Error in Get All Blogs :", e);
             }
         }
-
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost]
         [Route("CreateBlog")]
         public async Task<IActionResult> CreateBlog([FromBody] BlogDetail blogDetail)
@@ -50,7 +53,7 @@ namespace BlogWebSite.Controllers
                 throw new ApplicationException("Error in Posting Blog :", e);
             }
         }
-
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPut]
         [Route("UpdateBlog")]
         public async Task<IActionResult> UpdateBlog([FromBody] BlogDetail blogDetail)
@@ -72,7 +75,7 @@ namespace BlogWebSite.Controllers
                 throw new ApplicationException("Error in Updating Blog :", e);
             }
         }
-
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpDelete]
         [Route("DeleteBlog/{id}")]
         public async Task<IActionResult> DeleteBlog([FromRoute]int id)
