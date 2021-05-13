@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Swagger;
 using System.Text;
 
 namespace BlogWebSite
@@ -31,9 +33,13 @@ namespace BlogWebSite
 
             services.AddControllers();
             services.AddCors();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc(name :"v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+            });
             services.Configure<JwtConfig>(Configuration.GetSection("Jwt"));
             services.AddAuthentication(options =>
-            {
+            {   
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -45,14 +51,15 @@ namespace BlogWebSite
                   jwt.SaveToken = true;
                   jwt.TokenValidationParameters = new TokenValidationParameters
                   {
-                      ValidateIssuerSigningKey = true, // this will validate the 3rd part of the jwt token using the secret that we added in the appsettings and verify we have generated the jwt token
-                      IssuerSigningKey = new SymmetricSecurityKey(key), // Add the secret key to our Jwt encryption
+                      ValidateIssuerSigningKey = true,
+                      IssuerSigningKey = new SymmetricSecurityKey(key),
                       ValidateIssuer = false,
                       ValidateAudience = false,
                       RequireExpirationTime = false,
                       ValidateLifetime = true
                   };
               });
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,7 +72,11 @@ namespace BlogWebSite
             app.UseExceptionHandler("/error");
             app.UseHttpsRedirection();
             app.UseCors(m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("swagger/v1/swagger.json", "My API");
+                c.RoutePrefix = string.Empty;
+            });
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
@@ -74,6 +85,7 @@ namespace BlogWebSite
             {
                 endpoints.MapControllers();
             });
+            
         }
     }
 }

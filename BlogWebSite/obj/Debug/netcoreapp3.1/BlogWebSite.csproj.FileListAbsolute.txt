@@ -65,5 +65,10 @@ C:\Users\SrishtiG\OneDrive - DPR Construction\Desktop\GrapecityAssignment\BlogWe
 C:\Users\SrishtiG\OneDrive - DPR Construction\Desktop\GrapecityAssignment\BlogWebSite\BlogWebSite\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\SrishtiG\OneDrive - DPR Construction\Desktop\GrapecityAssignment\BlogWebSite\BlogWebSite\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
 C:\Users\SrishtiG\OneDrive - DPR Construction\Desktop\GrapecityAssignment\BlogWebSite\BlogWebSite\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\SrishtiG\OneDrive - DPR Construction\Desktop\GrapecityAssignment\BlogWebSite\BlogWebSite\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\SrishtiG\OneDrive - DPR Construction\Desktop\GrapecityAssignment\BlogWebSite\BlogWebSite\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\SrishtiG\OneDrive - DPR Construction\Desktop\GrapecityAssignment\BlogWebSite\BlogWebSite\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\SrishtiG\OneDrive - DPR Construction\Desktop\GrapecityAssignment\BlogWebSite\BlogWebSite\obj\Debug\netcoreapp3.1\BlogWebSite.csproj.CoreCompileInputs.cache
+C:\Users\SrishtiG\OneDrive - DPR Construction\Desktop\GrapecityAssignment\BlogWebSite\BlogWebSite\obj\Debug\netcoreapp3.1\BlogWebSite.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\SrishtiG\OneDrive - DPR Construction\Desktop\GrapecityAssignment\BlogWebSite\BlogWebSite\obj\Debug\netcoreapp3.1\BlogWebSite.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\SrishtiG\OneDrive - DPR Construction\Desktop\GrapecityAssignment\BlogWebSite\BlogWebSite\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
