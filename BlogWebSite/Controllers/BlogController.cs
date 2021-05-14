@@ -64,7 +64,7 @@ namespace BlogWebSite.Controllers
                 {
                     db.BlogDetails.Attach(blogDetail);
                     db.Entry(blogDetail).Property(x => x.BlogContent).IsModified = true;
-                    db.Entry(blogDetail).Property(x => x.Tilte).IsModified = true;
+                    db.Entry(blogDetail).Property(x => x.Title).IsModified = true;
                     db.Entry(blogDetail).Property(x => x.Category).IsModified = true;
                     db.SaveChanges();
                 }

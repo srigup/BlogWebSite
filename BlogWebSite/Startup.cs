@@ -27,10 +27,12 @@ namespace BlogWebSite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            ConnectionString = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<BlogManagementContext>(options =>
-                options.UseSqlServer(ConnectionString));
+            //ConnectionString = Configuration.GetConnectionString("DefaultConnection");
+            //services.AddDbContext<BlogManagementContext>(options =>
+            //    options.u(ConnectionString));
 
+            services.AddDbContext<BlogManagementContext>(options => options.UseInMemoryDatabase(databaseName: "BlogManagement"));
+          
             services.AddControllers();
             services.AddCors();
             services.AddSwaggerGen(c =>
@@ -65,13 +67,16 @@ namespace BlogWebSite
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             app.UseExceptionHandler("/error");
+            
             app.UseHttpsRedirection();
             app.UseCors(m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            
             app.UseSwagger();
             app.UseSwaggerUI(c => {
                 c.SwaggerEndpoint("swagger/v1/swagger.json", "My API");

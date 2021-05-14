@@ -20,34 +20,36 @@ namespace BlogWebSite.Controllers
     [Route("api/[controller]")]
     public class AuthorController : ControllerBase
     {
-        private IGenericRepository<Author> _repository;
+        private IGenericRepository<Author> _repository; // For Real database , repository pattern
+        private BlogManagementContext context;
         private IConfiguration _config;
 
         public AuthorController(IConfiguration config)
         {
-            _repository = new GenericRepository<Author>(new BlogManagementContext());
+            context = new BlogManagementContext();
+          //  _repository = new GenericRepository<Author>(context);
             _config = config;
 
         }
 
-        [AllowAnonymous]
+       
         [HttpPost]
-        public async Task<IActionResult> Authenticate([FromBody] AuthorModel author)
+        public IActionResult Authenticate([FromBody] AuthorModel author)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var user = await _repository.Query(e => e.UserName == author.UserName & e.Password == author.Password);
+                    var user = context.Authors.Where(e => e.UserName == author.UserName & e.Password == author.Password).SingleOrDefault();
                     if (user == null)
                         return BadRequest(new { message = "Username or password is incorrect" });
-                    // return Ok(user);
-                    var jwtToken = GenerateJwtToken(user.Single());
+
+                    var jwtToken = GenerateJwtToken(user);
 
                     return Ok(new AuthenticateResponse
                     {
-                        AuthorId = user.Single().AuthorId,
-                        UserName = user.Single().UserName,
+                        AuthorId = user.AuthorId,
+                        UserName = user.UserName,
                         Token = jwtToken
                     });
                 }
